@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chaidar.newsapp.data.DataNews
 import com.chaidar.newsapp.adapter.NewsAdapter
 import com.chaidar.newsapp.R
+import com.chaidar.newsapp.initViewHeadline
 
 
 class PopularFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,17 +27,12 @@ class PopularFragment : Fragment() {
         rvNews.layoutManager = LinearLayoutManager(view.context)
         rvNews.adapter = NewsAdapter(DataNews.listPopularnews)
 
-        val imgHeadLine: ImageView = view.findViewById(R.id.img_headline)
-        val tvTitleHeadLine: TextView = view.findViewById(R.id.tv_title_headline)
-        val tvDescriptionHeadLine: TextView = view.findViewById(R.id.tv_desc_headline)
-        val tvDateHeadLine: TextView = view.findViewById(R.id.tv_date_headline)
-        val tvAuthorHeadLine: TextView = view.findViewById(R.id.tv_author_headline)
 
-        imgHeadLine.setImageResource(DataNews.photoHeadline[1])
-        tvTitleHeadLine.text = DataNews.titleHeadline[1]
-        tvDescriptionHeadLine.text = DataNews.descriptionHeadline[1]
-        tvDateHeadLine.text = DataNews.dateHeadline[1]
-        tvAuthorHeadLine.text = DataNews.authorHeadline[1]
-        return  view
+        val newsHeadline = view.findViewById<View>(R.id.news_headline)
+        initViewHeadline(view.context, newsHeadline, 1)
+
+        return view
     }
+
+
 }

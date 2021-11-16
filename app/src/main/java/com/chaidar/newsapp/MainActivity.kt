@@ -8,23 +8,36 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
-    private var mSectionPagerAdapter : SectionPagerAdapter? = null
-    private lateinit var vpnews : ViewPager2
-    private lateinit var tabs : TabLayout
+
+    private var mSectionPagerAdapter: SectionPagerAdapter? = null
+
+    private lateinit var vpNews: ViewPager2
+    private lateinit var tabs: TabLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //untuk build toolbar
         setSupportActionBar(findViewById(R.id.tool_bar))
 
-        vpnews  = findViewById(R.id.vp_news)
+        vpNews = findViewById(R.id.vp_news)
         tabs = findViewById(R.id.tabs)
 
-        mSectionPagerAdapter = SectionPagerAdapter(this)
-        vpnews.adapter = mSectionPagerAdapter
+        val vpNews: ViewPager2 = findViewById(R.id.vp_news)
 
-        val tabList = arrayOf("All News", "Top", "Popular")
-        TabLayoutMediator(tabs, vpnews){tab, position ->
+        val tabs: TabLayout = findViewById(R.id.tabs)
+
+        // inisiasi value di variable  mSectionPagerAdapter
+        mSectionPagerAdapter = SectionPagerAdapter(this)
+        // set adapter di viewpager
+        vpNews.adapter = mSectionPagerAdapter
+
+        // title di tab layout
+        val tabList = arrayListOf("All News" ," Top", "Popular")
+
+        // build title di tab layout
+        TabLayoutMediator(tabs, vpNews){tab, position ->
             tab.text = tabList[position]
         }.attach()
     }
